@@ -23,7 +23,7 @@ class ContactFormController extends Controller
         // $contacts = ContactForm::select('id','name','title','created_at')
         // ->paginate(20);
         
-        
+        // 検索対応
         $search = $request->search;
         $query = ContactForm::search($search);
 
