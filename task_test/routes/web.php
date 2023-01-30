@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ReservationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +36,12 @@ Route::prefix('contacts')->middleware(['auth'])
     Route::get('/{id}/edit', 'edit')->name('edit');
     Route::post('/{id}', 'update')->name('update');
     Route::post('/{id}/destroy', 'destroy')->name('destroy');
+});
+
+Route::prefix('reservation')->middleware('auth')->group(function (){
+    Route::get('/', [ReservationController::class, 'index'])->name('reservation.index');
+    Route::get('/reservation_list', [ReservationController::class, 'reservation_list'])->name('reservation.reservation_list');
+    Route::post('/', [ReservationController::class, 'store'])->name('reservation.store');
 });
 
 Route::get('/', function () {
